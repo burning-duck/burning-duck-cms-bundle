@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.github.burning-duck</groupId>
+    <artifactId>burning-duck-cms-bundle</artifactId>
+    <version>0.2.0-SNAPSHOT</version>
+    <packaging>war</packaging>
+
+    <name>burning-duck-cms-bundle</name>
+    <description>burning-duck: Magnolia CMS bundle.</description>
+
+    <properties>
+        <!-- Project -->
+        <javaVersion>1.8</javaVersion>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+
+        <!-- Dependencies -->
+        <magnoliaVersion>5.5.3</magnoliaVersion>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- Importing dependencyManagement of CE bundle. -->
+            <dependency>
+                <groupId>info.magnolia.bundle</groupId>
+                <artifactId>magnolia-bundle-parent</artifactId>
+                <version>${magnoliaVersion}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- Modules -->
+            <dependency>
+                <groupId>info.magnolia.restclient</groupId>
+                <artifactId>magnolia-rest-client-app</artifactId>
+                <version>1.1.1</version>
+            </dependency>
+
+
+            <!-- Markdown -->
+            <dependency>
+                <groupId>com.atlassian.commonmark</groupId>
+                <artifactId>commonmark</artifactId>
+                <version>0.9.0</version>
+            </dependency>
+
+            <!-- TEST -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.11</version>
+                <scope>test</scope>
+            </dependency>
+
+            <!-- javax -->
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>3.1.0</version>
+                <scope>provided</scope>
+            </dependency>
+        </dependencies>
+
+    </dependencyManagement>
+
+
+    <dependencies>
+
+
+        <!-- MARKDOWN -->
+        <dependency>
+            <groupId>com.atlassian.commonmark</groupId>
+            <artifactId>commonmark</artifactId>
+        </dependency>
+
+
+        <!-- Dependencies taken from https://nexus.magnolia-cms.com/content/repositories/magnolia.public.releases/info/magnolia/magnolia-empty-webapp/5.5.3/magnolia-empty-webapp-5.5.3.pom -->
+
+        <!-- Magnolia Core libs -->
+        <dependency>
+            <groupId>info.magnolia.ui</groupId>
+            <artifactId>magnolia-ui-admincentral</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>info.magnolia.widgetset</groupId>
+            <artifactId>magnolia-vaadin-widgetset</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>info.magnolia</groupId>
+            <artifactId>magnolia-rendering</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>info.magnolia</groupId>
+            <artifactId>magnolia-templating</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>info.magnolia</groupId>
+            <artifactId>magnolia-templating-jsp</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>info.magnolia</groupId>
+            <artifactId>magnolia-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>info.magnolia</groupId>
+            <artifactId>magnolia-jaas</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>info.magnolia.cache</groupId>
+            <artifactId>magnolia-cache-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>info.magnolia.cache</groupId>
+            <artifactId>magnolia-cache-ehcache</artifactId>
+        </dependency>
+        <!--
+         We excluded bouncycastle deps from Tika because they include jdk15 version - we want the jdk15on versions
+        -->
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-jdk15on</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcmail-jdk15on</artifactId>
+        </dependency>
+        <dependency>
+            <!--
+             JackRabbit doesn't bring tika-parsers transitively by default, but we want it
+            -->
+            <groupId>org.apache.tika</groupId>
+            <artifactId>tika-parsers</artifactId>
+        </dependency>
+
+
+        <!-- Magnolia Core Apps -->
+        <dependency>
+            <groupId>info.magnolia.pages</groupId>
+            <artifactId>magnolia-pages-app</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>info.magnolia.security</groupId>
+            <artifactId>magnolia-security-app</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>info.magnolia.about</groupId>
+            <artifactId>magnolia-about-app</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>info.magnolia.jcrbrowser</groupId>
+            <artifactId>magnolia-jcr-browser-app</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>info.magnolia.scheduler</groupId>
+            <artifactId>magnolia-module-scheduler</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>info.magnolia.activation</groupId>
+            <artifactId>magnolia-module-activation</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>info.magnolia.bundle</groupId>
+            <artifactId>magnolia-community-product-descriptor</artifactId>
+        </dependency>
+        <!-- Resources -->
+        <dependency>
+            <groupId>info.magnolia.resources</groupId>
+            <artifactId>magnolia-resources</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>info.magnolia.resources</groupId>
+            <artifactId>magnolia-resources-app</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>info.magnolia.resources</groupId>
+            <artifactId>magnolia-resources-templating</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>info.magnolia.definitions</groupId>
+            <artifactId>magnolia-definitions-app</artifactId>
+        </dependency>
+
+        <!--
+            Taken from https://nexus.magnolia-cms.com/content/repositories/magnolia.public.releases/info/magnolia/bundle/magnolia-community-webapp/5.5.3/magnolia-community-webapp-5.5.3.pom
+         -->
+        <dependency>
+            <groupId>info.magnolia</groupId>
+            <artifactId>magnolia-module-mail</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>info.magnolia.categorization</groupId>
+            <artifactId>magnolia-categorization-support</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>info.magnolia.categorization</groupId>
+            <artifactId>magnolia-categorization</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>info.magnolia</groupId>
+            <artifactId>magnolia-module-groovy</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>info.magnolia.messages</groupId>
+            <artifactId>magnolia-messages-app</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>info.magnolia</groupId>
+            <artifactId>magnolia-module-form</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>info.magnolia.dam</groupId>
+            <artifactId>magnolia-dam-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>info.magnolia.dam</groupId>
+            <artifactId>magnolia-dam-app</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>info.magnolia.dam</groupId>
+            <artifactId>magnolia-dam-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>info.magnolia.dam</groupId>
+            <artifactId>magnolia-dam-jcr</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>info.magnolia.dam</groupId>
+            <artifactId>magnolia-dam-templating</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>info.magnolia.dam</groupId>
+            <artifactId>magnolia-dam-imaging</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>info.magnolia</groupId>
+            <artifactId>magnolia-module-google-sitemap</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>info.magnolia</groupId>
+            <artifactId>magnolia-module-imaging</artifactId>
+        </dependency>
+
+        <!-- REST -->
+        <dependency>
+            <groupId>info.magnolia.rest</groupId>
+            <artifactId>magnolia-rest-integration</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>info.magnolia.rest</groupId>
+            <artifactId>magnolia-rest-services</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>info.magnolia.rest</groupId>
+            <artifactId>magnolia-rest-tools</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>info.magnolia.restclient</groupId>
+            <artifactId>magnolia-rest-client-app</artifactId>
+        </dependency>
+
+        <!-- MTE -->
+        <dependency>
+            <groupId>info.magnolia.templating</groupId>
+            <artifactId>magnolia-templating-kit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>info.magnolia.templating</groupId>
+            <artifactId>magnolia-templating-essentials-models</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>info.magnolia.templating</groupId>
+            <artifactId>magnolia-templating-essentials-imaging</artifactId>
+        </dependency>
+
+
+        <dependency>
+            <groupId>info.magnolia.site</groupId>
+            <artifactId>magnolia-site</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>info.magnolia.site</groupId>
+            <artifactId>magnolia-site-app</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>info.magnolia.cache</groupId>
+            <artifactId>magnolia-cache-app</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>info.magnolia.cache</groupId>
+            <artifactId>magnolia-cache-browser-app</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>info.magnolia.log</groupId>
+            <artifactId>magnolia-log-tools</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>info.magnolia.jcrtools</groupId>
+            <artifactId>magnolia-jcr-tools</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>info.magnolia.appswitcher</groupId>
+            <artifactId>magnolia-appswitcher</artifactId>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+    </dependencies>
+
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.5.1</version>
+                    <configuration>
+                        <source>${javaVersion}</source>
+                        <target>${javaVersion}</target>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>3.0.1</version>
+                    <configuration>
+                        <encoding>${project.build.sourceEncoding}</encoding>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>3.0.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>2.8.2</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>versions-maven-plugin</artifactId>
+                    <version>2.2</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>3.5.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>2.5.2</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.19.1</version>
+                    <configuration>
+                        <argLine>-Dfile.encoding=${project.build.sourceEncoding}</argLine>
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>3.0.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-maven-plugin</artifactId>
+                    <version>9.3.3.v20150827</version>
+                    <configuration>
+                        <scanIntervalSeconds>10</scanIntervalSeconds>
+                        <webApp>
+                            <descriptor>${project.basedir}/local/jetty/web.xml</descriptor>
+                        </webApp>
+                        <httpConnector>
+                            <port>8082</port>
+                        </httpConnector>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+
+        <!-- default resources configuration which will filter your module descriptors -->
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </resource>
+            <resource>
+                <filtering>true</filtering>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>META-INF/magnolia/*</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>magnolia.public</id>
+            <url>https://nexus.magnolia-cms.com/content/groups/public</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>vaadin-addons</id>
+            <url>https://maven.vaadin.com/vaadin-addons</url>
+        </repository>
+    </repositories>
+
+    <profiles>
+        <!-- Build sources and docs only in ci -->
+        <profile>
+            <id>ci</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>2.4</version>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>2.10.2</version>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>

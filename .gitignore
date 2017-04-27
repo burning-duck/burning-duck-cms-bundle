@@ -1,0 +1,7 @@
+
+unimedia-cms-webapp/target/
+magnolia-home/
+.idea/
+*.iml
+overlays/
+target/

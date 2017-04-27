@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module SYSTEM "module.dtd" >
+<module>
+    <name>burningduck-cms</name>
+    <displayName>burning-duck CMS Module</displayName>
+    <description>Java implementations used by burning-duck.de</description>
+    <class>com.github.burningduck.cms.BurningDuckCmsModule</class>
+    <versionHandler>com.github.burningduck.cms.setup.BurningDuckCmsVersionHandler</versionHandler>
+    <version>${project.version}</version>
+
+    <components>
+        <id>main</id>
+        <component>
+            <type>com.github.burningduck.cms.markdown.MarkdownTemplatingFunctions</type>
+            <implementation>com.github.burningduck.cms.markdown.MarkdownTemplatingFunctions</implementation>
+            <scope>singleton</scope>
+        </component>
+    </components>
+
+    <dependencies>
+        <dependency>
+            <name>rendering</name>
+            <version>5.5/*</version>
+        </dependency>
+        <dependency>
+            <name>site</name>
+            <version>1.0/*</version>
+        </dependency>
+    </dependencies>
+
+</module>
