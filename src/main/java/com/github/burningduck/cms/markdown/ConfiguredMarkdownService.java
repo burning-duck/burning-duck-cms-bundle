@@ -1,11 +1,11 @@
 package com.github.burningduck.cms.markdown;
 
+import com.vladsch.flexmark.html.HtmlRenderer;
+import com.vladsch.flexmark.parser.Parser;
 import info.magnolia.jcr.util.NodeUtil;
 import info.magnolia.jcr.util.PropertyUtil;
 import info.magnolia.jcr.wrapper.HTMLEscapingNodeWrapper;
 import org.apache.commons.lang3.StringUtils;
-import org.commonmark.parser.Parser;
-import org.commonmark.renderer.html.HtmlRenderer;
 
 import javax.jcr.Node;
 import java.util.Optional;
