@@ -1,5 +1,6 @@
 # Burning Duck Custom Magnolia Bundle
 
+[![Build status][travis-image]][travis-url]
 
 ## What you need
 You need the Java jdk1.8.*
@@ -47,3 +48,6 @@ To create a light module in the `[your-project-name]-cms-light` folder take a lo
 
 ## Questions
 If you have any question about anything, feel free to create a issue, write an E-Mail or join the [Discord Chat](https://discord.gg/5KGSrfd)
+
+[travis-image]: https://img.shields.io/travis/burning-duck/burning-duck-cms-bundle.svg?style=flat
+[travis-url]: https://travis-ci.org/burning-duck/burning-duck-cms-bundle
