@@ -11,8 +11,13 @@
     <components>
         <id>main</id>
         <component>
+            <type>com.github.burningduck.cms.markdown.MarkdownService</type>
+            <implementation>com.github.burningduck.cms.markdown.ConfiguredMarkdownService</implementation>
+            <scope>singleton</scope>
+        </component>
+        <component>
             <type>com.github.burningduck.cms.markdown.MarkdownTemplatingFunctions</type>
-            <implementation>com.github.burningduck.cms.markdown.MarkdownTemplatingFunctions</implementation>
+            <implementation>com.github.burningduck.cms.markdown.DefaultMarkdownTemplatingFunctions</implementation>
             <scope>singleton</scope>
         </component>
     </components>
